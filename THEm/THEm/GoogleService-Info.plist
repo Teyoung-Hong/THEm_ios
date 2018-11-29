@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>237620419651-fi3dtng5iqv3vbnb4kvf1jbr86g9hiop.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.237620419651-fi3dtng5iqv3vbnb4kvf1jbr86g9hiop</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCEXY8DNxNXK5I1vZNZsSMxYfi38OTCCew</string>
+	<key>GCM_SENDER_ID</key>
+	<string>237620419651</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lish.THEm.hong</string>
+	<key>PROJECT_ID</key>
+	<string>them-lish-them-lish</string>
+	<key>STORAGE_BUCKET</key>
+	<string>them-lish-them-lish.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:237620419651:ios:f889edb6473e91fc</string>
+	<key>DATABASE_URL</key>
+	<string>https://them-lish-them-lish.firebaseio.com</string>
+</dict>
+</plist>
