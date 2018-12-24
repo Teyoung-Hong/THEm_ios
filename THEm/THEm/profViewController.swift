@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class profViewController: UIViewController {
 
@@ -31,4 +33,9 @@ class profViewController: UIViewController {
         self.present(goProfEdit, animated: true, completion: nil)
     }
 
+    @IBAction func handleSignout(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let signout = storyboard!.instantiateViewController(withIdentifier: "init")
+        self.present(signout, animated: true, completion: nil)
+    }
 }

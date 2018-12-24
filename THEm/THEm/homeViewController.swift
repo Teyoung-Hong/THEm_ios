@@ -7,35 +7,32 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
 
 class homeViewController: UIViewController {
 
     @IBOutlet weak var underImage: UIImageView!
     @IBOutlet weak var loadedImage: UIImageView!
     @IBOutlet weak var bottomImage: UIImageView!
-    var imageNum: Int?
     
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        imageNum = appDelegate.getImage!
-        if imageNum == 3{
-            loadedImage.image = UIImage(named:"石原さとみ.jpg")
-            underImage.image = UIImage(named: "本田圭佑.jpg")
-            bottomImage.image = UIImage(named: "前澤友作.jpg")
-        } else if imageNum == 1{
-            loadedImage.image = UIImage(named:"前澤友作.jpg")
-            underImage.image = UIImage(named:"石原さとみ.jpg")
-            bottomImage.image = UIImage(named: "本田圭佑.jpg")
-
-        } else {
-            loadedImage.image = UIImage(named: "本田圭佑.jpg")
-            underImage.image = UIImage(named:"前澤友作.jpg")
-            bottomImage.image = UIImage(named: "石原さとみ.jpg")
-
+        var ref: DocumentReference? = nil
+        loadedImage.image = UIImage(named:"石原さとみ.jpg")
+   
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
         }
     }
-    
-    ///override func viewWillAppear(_ animated: Bool) {
-    ///}
 }
+

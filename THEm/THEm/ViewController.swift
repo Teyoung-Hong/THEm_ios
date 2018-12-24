@@ -9,63 +9,25 @@
 import UIKit
 import FirebaseAuth
 
-class ViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
+class ViewController: UIViewController{
     
-    var selectedTextField: UITextField?
-    
+    @IBOutlet weak var toLogin: UIButton!
+    @IBOutlet weak var toSignup: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textFieldInit()
-        
+
     }
     
-    @IBAction func loginTapped(_ sender: Any) {
-        Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (authResult, error) in
-            guard let user = authResult?.user else { return }
-        }
-        
-        Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (user, error) in
-            if error != nil {
-                print("ログインできませんでした")
-            }
-            else {
-                let goChoose = self.storyboard!.instantiateViewController(withIdentifier: "chooseThem")
-                self.present(goChoose, animated: true, completion: nil)
-                print("ログインできました")
-                print("\(self.email)")
-                print("\(self.password)")
-            }
-        }
+    @IBAction func goLogin(_ sender: Any) {
+        let loginView = self.storyboard!.instantiateViewController(withIdentifier: "login")
+        self.present(loginView, animated: true, completion: nil)
     }
     
-    func textFieldInit() {
-        // 最初に選択されているTextFieldをセット
-        self.selectedTextField = self.email
-        
-        // 各TextFieldのdelegate 色んなイベントが飛んでくるようになる
-        email.delegate = self
-        password.delegate = self
-        
+    @IBAction func goSignup(_ sender: Any) {
+        let signUp = self.storyboard!.instantiateViewController(withIdentifier: "signup")
+        self.present(signUp, animated: true, completion: nil)
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // 選択されているTextFieldを更新
-        self.selectedTextField = textField
-    }
-    
-    // リターンが押された時
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // キーボードを閉じる
-        textField.resignFirstResponder()
-        return true
-    }
-    
 }
 

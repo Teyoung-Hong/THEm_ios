@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
 
 class chooseThemViewController: UIViewController {
     
@@ -15,40 +18,47 @@ class chooseThemViewController: UIViewController {
     @IBOutlet weak var hdBtn: UIButton!
     @IBOutlet weak var isBtn: UIButton!
     @IBOutlet weak var startBtn: UIButton!
-    var btnString: String?
+    var themTag: Int?
+    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     }
 
-    @IBAction func myBtnTapped(_ sender: Any) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.getImage = 1
-        myBtn.setTitleColor(UIColor.red, for: [])
-
-        print(appDelegate.getImage)
-    }
-    
-    @IBAction func hkBtnTapped(_ sender: Any) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.getImage = 2
-        hdBtn.setTitleColor(UIColor.red, for: [])
-
-        print(appDelegate.getImage)
+    @IBAction func choosed(_ sender: UIButton) {
+        self.view.window?.backgroundColor = UIColor.red
+        switch sender.tag {
+        case 1:
+            themTag = 1
+            break
+        case 2:
+            themTag = 2
+            break
+        case 3:
+            themTag = 3
+        default:
+            return
         }
-    
-    @IBAction func isBtnTapped(_ sender: Any) {
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.getImage = 3
-        isBtn.setTitleColor(UIColor.red, for: [])
-
-        print(appDelegate.getImage)
     }
+    
     
     @IBAction func toHome(_ sender: Any) {
-        let goHome = storyboard!.instantiateViewController(withIdentifier: "home")
-        self.present(goHome, animated: true, completion: nil)
+        var ref: DocumentReference? = nil
+        if themTag != nil {
+            let goHome = storyboard!.instantiateViewController(withIdentifier: "home")
+            self.present(goHome, animated: true, completion: nil)
+            ref = db.collection("users").addDocument(data: ["ut_Tag": themTag]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                }
+            }
+        } else {
+            print("Error happened")
+        }
     }
     
 }
